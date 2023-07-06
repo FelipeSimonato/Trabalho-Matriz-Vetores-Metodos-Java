@@ -66,6 +66,15 @@ public class estaonamento {
             System.out.println("Carro não encontrado.");
         }
     }
+    public static int calcularVagasDisponiveis(String[][] matriz, int linhas) {
+        int vagasDisponiveis = 0;
+        for (int i = 0; i < linhas; i++) {
+            if (matriz[i][0] == null) {
+                vagasDisponiveis++;
+            }
+        }
+        return vagasDisponiveis;
+    }
 
     public static void main(String[] args) {
         String[][] estacionamento;
@@ -79,7 +88,7 @@ public class estaonamento {
         estacionamento = new String[capacidade][colunas];
 
         do {
-            System.out.println("Escolha uma opção: \n 1 - Mostrar carros estacionados \n 2 - Inserir carro \n 3 - Calcular ganho do estacionamento \n 4 - Remover carro \n 0 - Sair");
+            System.out.println("Escolha uma opção: \n 1 - Mostrar carros estacionados \n 2 - Inserir carro \n 3 - Calcular ganho do estacionamento \n 4 - Remover carro \n 5 - Mostrar vagas\n 0 - Sair");
             opcao = scanner.nextInt();
             switch (opcao) {
                 case 0:
@@ -97,6 +106,10 @@ public class estaonamento {
                     System.out.println("Insira a placa do carro a ser removido:");
                     placa = scanner.next();
                     removerCarro(estacionamento, capacidade, placa);
+                    break;
+                case 5:
+                    int vagasDisponiveis = calcularVagasDisponiveis(estacionamento, capacidade);
+                    System.out.println("Quantidade de vagas disponíveis: " + vagasDisponiveis);
                     break;
                 default:
                     System.out.println("Opção inválida!");
